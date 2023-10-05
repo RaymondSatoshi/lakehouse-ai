@@ -7,14 +7,14 @@ from langchain.schema import(
     SystemMessage
 )
 
-config.init_session()
+config.init()
 
 if st.session_state["OPENAI_API_KEY"]:
     chat = ChatOpenAI(openai_api_key=st.session_state["OPENAI_API_KEY"])
 else:
     chat = None
 
-st.set_page_config(page_title="Lakehouse-ai", layout="wide")
+# st.set_page_config(page_title="Lakehouse-ai", layout="wide")
 st.title("TalkWithLakehouse")
 
 for message in st.session_state["MESSAGE"]:

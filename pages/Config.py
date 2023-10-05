@@ -1,10 +1,7 @@
 import config
 import streamlit as st
 
-config.init_session()
-
-st.set_page_config(page_title="Config", layout="wide")
-
+config.init()
 st.title("Config")
 
 openai_api_key = st.text_input("OPENAI_API_KEY", value=st.session_state["OPENAI_API_KEY"], max_chars=None, key=None, type="password")
