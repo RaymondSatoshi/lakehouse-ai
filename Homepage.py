@@ -43,3 +43,6 @@ with st.container():
         else:
             with st.chat_message("user"):
                 st.markdown(message.content)
+
+
+    print(type(st.session_state["MESSAGE"]))
