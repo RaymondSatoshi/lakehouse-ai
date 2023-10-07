@@ -1,3 +1,4 @@
 __pycache__/
-.env
-pages/test.fuck.py
+main/__pycache__/
+main/.env
+pages/Link2DataBrick.ipynb

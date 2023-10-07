@@ -1,4 +1,4 @@
-import config
+from main import config, agent
 import streamlit as st
 from langchain.chat_models import ChatOpenAI
 from langchain.schema import(
@@ -17,14 +17,6 @@ else:
 # st.set_page_config(page_title="Lakehouse-ai", layout="wide")
 st.title("TalkWithLakehouse")
 
-for message in st.session_state["MESSAGE"]:
-    if isinstance(message, HumanMessage):
-        with st.chat_message("user"):
-            st.markdown(message.content)
-    elif isinstance(message, AIMessage):
-        with st.chat_message("assistant"):
-            st.markdown(message.content)
-
 if not chat: st.warning("plz set your key in the config page") 
 
 with st.container():
@@ -33,8 +25,8 @@ with st.container():
     # ask = st.button("Ask")
     if question:
         st.session_state["MESSAGE"].append(HumanMessage(content=question))
-        response = chat([HumanMessage(content=question)])
-        st.session_state["MESSAGE"].append(response)
+        response = agent.get_result_from_query(question)
+        st.session_state["MESSAGE"].append(AIMessage(content=response))
 
     for message in st.session_state["MESSAGE"]:
         if isinstance(message, AIMessage):
@@ -43,6 +35,3 @@ with st.container():
         else:
             with st.chat_message("user"):
                 st.markdown(message.content)
-
-
-    print(type(st.session_state["MESSAGE"]))
